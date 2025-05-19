@@ -1,37 +1,58 @@
 #include <stdio.h>
 
+#define BISPO 1
+#define TORRE 2
+#define RAINHA 3
+#define MOV_BISPO 5
+#define MOV_TORRE 5
+#define MOV_RAINHA 8
+
 int main() {
-    int peca; 
-    int i = 0;
-    int num; // número para usar no laço de repetição for. 
+    int pecaSelecionada; 
+    int contador = 0;
 
-    printf("Desafio do Xadrez");
-    
-    printf("Escolha qual peça vocês quer movimentar: \n Bispo (1)\n Torre (2) \n Rainha (3)\n"); 
-    //levando o usuário a escolher alguma peça.
+    printf("=== Desafio do Xadrez ===\n\n");
+    printf("Escolha qual peça você quer movimentar:\n");
+    printf("1 - Bispo\n");
+    printf("2 - Torre\n");
+    printf("3 - Rainha\n");
+    printf("Digite o número da peça: ");
+    scanf("%d", &pecaSelecionada); // Coleta a escolha do usuário
 
-    scanf("%d", &peca); //Coletando a informação do usuário.  
-    if(peca == 1){
-        printf("Humm... Você escolheu o Bispo, vamos as movimentações: \n"); 
-        while (i < 5)
-        {
-            printf("Diagonal superior direita\n");
-            i++;
-        }    
-    }else if(peca == 2){
-        printf("Humm... Você escolheu a torre, vamos as movimentações: \n");
-        for(num = 1; num <= 5; num++) {
+    printf("\n"); // Apenas para espaçamento na saída
 
+    // Verifica a peça escolhida
+    if (pecaSelecionada == BISPO) {
+        printf("Você escolheu o Bispo. Movimentação:\n");
+        
+        // Loop com while
+        while (contador < MOV_BISPO) {
+            printf("Cima\n");
+            printf("Direita\n"); // Bispo se move na diagonal superior direita
+            contador++;
+        }
+
+    } else if (pecaSelecionada == TORRE) {
+        printf("Você escolheu a Torre. Movimentação:\n");
+
+        // Loop com for
+        for (int i = 0; i < MOV_TORRE; i++) {
             printf("Direita\n");
         }
-            
-    }else{
-        printf("Humm... Você escolheu a rainha, vamos as movimentações: \n");
-        do{
+
+    } else if (pecaSelecionada == RAINHA) {
+        printf("Você escolheu a Rainha. Movimentação:\n");
+
+        contador = 0; // Reinicializa o contador para o do...while
+
+        // Loop com do...while
+        do {
             printf("Esquerda\n");
-            i++
-        }
-        while(i<8); 
+            contador++;
+        } while (contador < MOV_RAINHA);
+
+    } else {
+        printf("Opção inválida. Por favor, reinicie o programa e escolha uma peça válida.\n");
     }
 
     return 0;
